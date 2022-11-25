@@ -8,6 +8,7 @@ public class mouvementRadish : MonoBehaviour
     public Animator anim;
     private Vector3 mouvement;
     private Vector3 dernierMouvement;
+    public GameObject projectile;
     private Rigidbody2D rig;
     public float jumpforce = 7.0f;
     public bool canJump = true;
@@ -43,10 +44,21 @@ public class mouvementRadish : MonoBehaviour
                 anim.SetBool("Jump", true);
                 canJump = false;
             }
-            
         }
 
-       
+        if (Input.GetKeyDown("x"))
+        {
+            Debug.Log("fire was pressed");
+            GameObject inst = Instantiate(projectile, transform.position, Quaternion.identity);
+
+            int intDirection = GetDirection();
+            ShootProjectile script = projectile.GetComponent<ShootProjectile>();
+            script.Shoot(intDirection);
+            //inst.transform.Rotate(Vector3.forward, scriptPlayer.GetDirection() * 90);
+        }
+
+
+
 
 
     }

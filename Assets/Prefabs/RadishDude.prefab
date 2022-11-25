@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8235709954847283261}
   - component: {fileID: 8235709954847283262}
   - component: {fileID: 8235709954847283256}
-  - component: {fileID: 2447022791359446818}
-  m_Layer: 0
+  - component: {fileID: 8235709954847283257}
+  m_Layer: 7
   m_Name: RadishDude
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   anim: {fileID: 8235709954847283261}
+  projectile: {fileID: 0}
   jumpforce: 7
   canJump: 1
 --- !u!50 &8235709954847283256
