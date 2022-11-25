@@ -9,58 +9,53 @@ public class mouvementRadish : MonoBehaviour
     private Vector3 mouvement;
     private Vector3 dernierMouvement;
     private Rigidbody2D rig;
-    public float jumpforce = 10f;
-    // Start is called before the first frame update
+    public float jumpforce = 7.0f;
+    public bool canJump = true;
     void Start()
     {
         mouvement.z = 0.0f;
         rig = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         mouvement.x = Input.GetAxisRaw("Horizontal");
-        mouvement.y = 0;
+        mouvement.y = 0.0f;
 
         if (mouvement.sqrMagnitude > 0.001f)
         {
             dernierMouvement = mouvement;
+            anim.SetFloat("DernierHorizontal", GetDirection());
         }
 
         anim.SetFloat("Speed", mouvement.sqrMagnitude);
         anim.SetFloat("Horizontal", mouvement.x);
         anim.SetFloat("IdleDirection", GetDirection());
 
-        //if (Input.GetButtonDown("Jump"))
-        //{
-        //    rig.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
-        //    Debug.Log("space was pressed");
-        //}
+        
 
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("z"))
         {
-            rig.AddForce(Vector3.up * jumpforce, ForceMode2D.Impulse);
-            Debug.Log("space was pressed");
-            //DON'T DESTROY ON LOAD 
-            anim.SetBool("Jump", true);
+            if (canJump)
+            {
+                rig.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+                Debug.Log("jump was pressed");
+                anim.SetBool("Jump", true);
+                canJump = false;
+            }
+            
         }
+
+       
 
 
     }
 
     private void FixedUpdate()
     {
-
-       
-
-        transform.position = transform.position + mouvement.normalized * Time.fixedDeltaTime * speed;
-        rig.velocity = mouvement.normalized * speed;
-
-        if (anim.GetBool("Jump"))
-        {
-            StartCoroutine(CJump());
-        }
+        //transform.position = transform.position + mouvement.normalized * Time.fixedDeltaTime * speed;
+        rig.velocity = new Vector2(mouvement.normalized.x * speed, rig.velocity.y) ;
+        //rig.AddForce(mouvement.normalized * speed, ForceMode2D.Force);
     }
 
     public int GetDirection()
@@ -83,17 +78,14 @@ public class mouvementRadish : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
+            Vector2 norme = collision.GetContact(0).normal;
+            float produitScalaire = Vector2.Dot (norme,Vector2.up);
+            if(produitScalaire > 0.9f)
+            {
             anim.SetBool("Jump", false);
+                canJump = true;
+            }
             Debug.Log("wall was hit");
         }
-    }
-
-    IEnumerator CJump()
-    {
-        yield return new WaitForSeconds(0.2f);
-        rig.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(0.8f);
-        rig.AddForce(Vector2.down * jumpforce, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(0.8f);
     }
 }
