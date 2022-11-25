@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8235709954847283261}
   - component: {fileID: 8235709954847283262}
   - component: {fileID: 8235709954847283256}
-  - component: {fileID: 8235709954847283257}
+  - component: {fileID: 2447022791359446818}
   m_Layer: 0
   m_Name: RadishDude
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8235709954847283250}
-  m_LocalRotation: {x: -0, y: -0, z: 0.013456754, w: 0.9999095}
+  m_LocalRotation: {x: 0, y: 0, z: 0.013456099, w: 0.9999095}
   m_LocalPosition: {x: -3.12, y: -2.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 6862589947206935886, guid: 3714f31227c136a4ab2e9544f5e109d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -145,7 +145,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &8235709954847283257
+--- !u!61 &2447022791359446818
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,7 +158,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0055356026, y: -0.03321272}
+  m_Offset: {x: 0.0065938234, y: -0.02563867}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -169,5 +169,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.90036154, y: 1.0784615}
+  m_Size: {x: 0.9185027, y: 1.1139278}
   m_EdgeRadius: 0

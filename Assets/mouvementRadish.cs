@@ -39,7 +39,7 @@ public class mouvementRadish : MonoBehaviour
             if (canJump)
             {
                 rig.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
-                Debug.Log("jump was pressed");
+                //Debug.Log("jump was pressed");
                 anim.SetBool("Jump", true);
                 canJump = false;
             }
@@ -78,14 +78,23 @@ public class mouvementRadish : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
-            Vector2 norme = collision.GetContact(0).normal;
-            float produitScalaire = Vector2.Dot (norme,Vector2.up);
-            if(produitScalaire > 0.9f)
+            Debug.Log("debut");
+            for (int i = 0; i < collision.contactCount; i++)
             {
-            anim.SetBool("Jump", false);
-                canJump = true;
+                Vector2 norme = collision.GetContact(i).normal;
+                float produitScalaire = Vector2.Dot(norme, Vector2.up);
+                Debug.Log(produitScalaire);
+                if (produitScalaire > 0.9f)
+                {
+                    anim.SetBool("Jump", false);
+                    canJump = true;
+                    break;
+                }
+
             }
-            Debug.Log("wall was hit");
+
+
+            Debug.Log("fin");
         }
     }
 }
