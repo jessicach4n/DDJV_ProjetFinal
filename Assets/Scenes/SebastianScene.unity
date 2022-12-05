@@ -340,22 +340,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1238742170 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4897596389066032658, guid: 2fbd34fae2e262740907c5333446d338, type: 3}
-  m_PrefabInstance: {fileID: 4897596389623860618}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1388690459 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8235709954847283262, guid: 36de55b8595d94549807d6cb2d8f2d39, type: 3}
-  m_PrefabInstance: {fileID: 8235709955606815781}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7af11418b5890045ac5d93ba6bf30dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1480977921
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,11 +591,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4897596389066032656, guid: 2fbd34fae2e262740907c5333446d338, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.66
+      value: 1.53
       objectReference: {fileID: 0}
     - target: {fileID: 4897596389066032656, guid: 2fbd34fae2e262740907c5333446d338, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4
+      value: -2.45
       objectReference: {fileID: 0}
     - target: {fileID: 4897596389066032656, guid: 2fbd34fae2e262740907c5333446d338, type: 3}
       propertyPath: m_LocalPosition.z
@@ -649,10 +633,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wine
       objectReference: {fileID: 0}
-    - target: {fileID: 8482438208570393933, guid: 2fbd34fae2e262740907c5333446d338, type: 3}
-      propertyPath: scriptPlayer
-      value: 
-      objectReference: {fileID: 1388690459}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fbd34fae2e262740907c5333446d338, type: 3}
 --- !u!1001 &8235709955606815781
@@ -666,10 +646,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RadishDude
       objectReference: {fileID: 0}
-    - target: {fileID: 8235709954847283262, guid: 36de55b8595d94549807d6cb2d8f2d39, type: 3}
-      propertyPath: projectile
-      value: 
-      objectReference: {fileID: 1238742170}
     - target: {fileID: 8235709954847283263, guid: 36de55b8595d94549807d6cb2d8f2d39, type: 3}
       propertyPath: m_RootOrder
       value: 1

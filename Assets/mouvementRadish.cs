@@ -40,7 +40,7 @@ public class mouvementRadish : MonoBehaviour
             if (canJump)
             {
                 rig.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
-                Debug.Log("jump was pressed");
+                //Debug.Log("jump was pressed");
                 anim.SetBool("Jump", true);
                 canJump = false;
             }
@@ -48,7 +48,7 @@ public class mouvementRadish : MonoBehaviour
 
         if (Input.GetKeyDown("x"))
         {
-            Debug.Log("fire was pressed");
+            //Debug.Log("fire was pressed");
             GameObject inst = Instantiate(projectile, transform.position, Quaternion.identity);
 
             int intDirection = GetDirection();
@@ -97,7 +97,7 @@ public class mouvementRadish : MonoBehaviour
             anim.SetBool("Jump", false);
                 canJump = true;
             }
-            Debug.Log("wall was hit");
+            //Debug.Log("wall was hit");
         }
     }
 }
