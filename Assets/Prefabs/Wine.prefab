@@ -100,10 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 4897596389066032658}
-  scriptPlayer: {fileID: 0}
-  player: {fileID: 0}
-  rig: {fileID: 0}
-  speed: 0
+  player: {fileID: 8235709954847283250, guid: 36de55b8595d94549807d6cb2d8f2d39, type: 3}
+  speed: 5
 --- !u!50 &1533137755799955596
 Rigidbody2D:
   serializedVersion: 4
