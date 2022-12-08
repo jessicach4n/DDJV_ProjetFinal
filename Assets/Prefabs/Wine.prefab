@@ -99,9 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0815ca720c73ca4891a921aceadc6cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 4897596389066032658}
-  player: {fileID: 8235709954847283250, guid: 36de55b8595d94549807d6cb2d8f2d39, type: 3}
   speed: 5
+  direction: -1
 --- !u!50 &1533137755799955596
 Rigidbody2D:
   serializedVersion: 4
@@ -117,12 +116,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &7526735008543755201
 BoxCollider2D:
   m_ObjectHideFlags: 0

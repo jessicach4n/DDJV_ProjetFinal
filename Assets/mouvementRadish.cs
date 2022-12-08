@@ -22,9 +22,10 @@ public class mouvementRadish : MonoBehaviour
     {
         mouvement.x = Input.GetAxisRaw("Horizontal");
         mouvement.y = 0.0f;
-
+        Debug.Log("this is get direction  " + GetDirection());
         if (mouvement.sqrMagnitude > 0.001f)
         {
+
             dernierMouvement = mouvement;
             anim.SetFloat("DernierHorizontal", GetDirection());
         }
@@ -53,14 +54,10 @@ public class mouvementRadish : MonoBehaviour
 
             int intDirection = GetDirection();
             ShootProjectile script = projectile.GetComponent<ShootProjectile>();
-            script.Shoot(intDirection);
+            //script.Shoot(intDirection);
+            script.direction = intDirection;
             //inst.transform.Rotate(Vector3.forward, scriptPlayer.GetDirection() * 90);
         }
-
-
-
-
-
     }
 
     private void FixedUpdate()
@@ -72,16 +69,16 @@ public class mouvementRadish : MonoBehaviour
 
     public int GetDirection()
     {
-        int direction = 0;
+        int direction =0;
         float petiteValeur = 0.001f;
         if (dernierMouvement.x < -petiteValeur)
         {
-            direction = 1;
+            direction = -1;
         }
-        
+
         else
         {
-            direction = 0;
+            direction = 1;
         }
 
         return direction;
