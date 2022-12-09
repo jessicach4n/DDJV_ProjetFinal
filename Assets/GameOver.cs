@@ -10,6 +10,9 @@ public class GameOver : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadScene(prochainNiveau);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            SceneManager.LoadScene(prochainNiveau);
+        }
     }
 }
