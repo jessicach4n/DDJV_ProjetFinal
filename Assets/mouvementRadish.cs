@@ -49,13 +49,18 @@ public class mouvementRadish : MonoBehaviour
 
         if (Input.GetKeyDown("x"))
         {
-            //Debug.Log("fire was pressed");
-            GameObject inst = Instantiate(projectile, transform.position, Quaternion.identity);
+            Debug.Log("fire was pressed");
+            //À la place, je tourne l'objet directement à l'instantiation... ça fonctionne mais ça n'explique pas pourquoi ça plante notre ancienne méthode. -MAL
+            float angle = GetDirection() == -1 ? 180.0f : 0.0f;
+            Debug.Log(angle);
+            Quaternion initalRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            GameObject inst = Instantiate(projectile, transform.position, initalRotation);
 
-            int intDirection = GetDirection();
-            ShootProjectile script = projectile.GetComponent<ShootProjectile>();
+            //ShootProjectile script = projectile.GetComponent<ShootProjectile>();
+            //rig.AddForce(transform.right * speed * intDirection, ForceMode2D.Impulse );
+            //rig.AddForceAtPosition(transform.right * speed, Vector2.up * -100000, ForceMode2D.Impulse);
             //script.Shoot(intDirection);
-            script.direction = intDirection;
+            //script.direction = intDirection;
             //inst.transform.Rotate(Vector3.forward, scriptPlayer.GetDirection() * 90);
         }
     }
