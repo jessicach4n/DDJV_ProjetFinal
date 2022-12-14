@@ -137,4 +137,14 @@ public class mouvementRadish : MonoBehaviour
             }
         }
     }
+
+    public void OnHitLazer()
+    {
+        Reload();
+    }
+
+    public void Reload()
+    {
+        
+    }
 }
