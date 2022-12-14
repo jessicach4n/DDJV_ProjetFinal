@@ -18,26 +18,29 @@ public class mouvementRadish : MonoBehaviour
     public int maxPies = 5;
     private bool piesAllCollected = false;
 
-    public TextMeshProUGUI nbMaxPies;
-    public TextMeshProUGUI nbLivesText;
-    public TextMeshProUGUI nbPiesText;
+    public int GetNumberMaxPies()
+    {
+        return maxPies;
+    }
+
+    public int GetNumberPies()
+    {
+        return nbPiesCollected;
+    }
+
+    public int GetNumberLives()
+    {
+        return nbLives;
+    }
 
     void Start()
     {
         mouvement.z = 0.0f;
         rig = GetComponent<Rigidbody2D>();
-
-        nbLivesText.text = nbLives.ToString();
-        nbPiesText.text = nbPiesCollected.ToString();
-        nbMaxPies.text = "/" + maxPies.ToString();
-
     }
 
     void Update()
     {
-        nbLivesText.text = nbLives.ToString();
-        nbPiesText.text = nbPiesCollected.ToString();
-
         mouvement.x = Input.GetAxisRaw("Horizontal");
         mouvement.y = 0.0f;
         //Debug.Log("this is get direction  " + GetDirection());
@@ -51,8 +54,6 @@ public class mouvementRadish : MonoBehaviour
         anim.SetFloat("Speed", mouvement.sqrMagnitude);
         anim.SetFloat("Horizontal", mouvement.x);
         anim.SetFloat("IdleDirection", GetDirection());
-
-        
 
         if (Input.GetKeyDown("z"))
         {
@@ -120,7 +121,6 @@ public class mouvementRadish : MonoBehaviour
             //Debug.Log("wall was hit");
         }
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
