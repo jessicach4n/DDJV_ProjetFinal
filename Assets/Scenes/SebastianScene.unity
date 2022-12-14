@@ -254,7 +254,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &611272679
 GameObject:
@@ -354,7 +354,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &771220764
 GameObject:
@@ -571,7 +571,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1480977921
 GameObject:
@@ -678,7 +678,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1480977925
 BoxCollider2D:
@@ -720,6 +720,7 @@ GameObject:
   - component: {fileID: 1549754222}
   - component: {fileID: 1549754223}
   - component: {fileID: 1549754225}
+  - component: {fileID: 1549754226}
   m_Layer: 10
   m_Name: BunnyDude
   m_TagString: Untagged
@@ -812,7 +813,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &1549754222
 CapsuleCollider2D:
@@ -837,7 +838,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549754218}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7af11418b5890045ac5d93ba6bf30dd, type: 3}
   m_Name: 
@@ -847,6 +848,9 @@ MonoBehaviour:
   projectile: {fileID: 7433606168569304163, guid: db543ff73d7ca5344a0c5978aa6e352e, type: 3}
   jumpforce: 7
   canJump: 1
+  nbLives: 4
+  nbPiesCollected: 0
+  maxPies: 5
 --- !u!50 &1549754225
 Rigidbody2D:
   serializedVersion: 4
@@ -868,6 +872,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1549754226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549754218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5c230ea5a7340fa95c16fdf816e819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  anim: {fileID: 1549754219}
+  projectile: {fileID: 7433606168569304163, guid: db543ff73d7ca5344a0c5978aa6e352e, type: 3}
+  jumpforce: 7
+  canJump: 1
+  rateOfFireInSeconds: 1
+  rateOfJump: 3
 --- !u!1001 &4897596389623860618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -877,7 +900,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4897596389066032656, guid: 2fbd34fae2e262740907c5333446d338, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4897596389066032656, guid: 2fbd34fae2e262740907c5333446d338, type: 3}
       propertyPath: m_LocalPosition.x
@@ -934,7 +957,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7433606168569304160, guid: db543ff73d7ca5344a0c5978aa6e352e, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7433606168569304160, guid: db543ff73d7ca5344a0c5978aa6e352e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -999,11 +1022,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8235709954847283263, guid: 36de55b8595d94549807d6cb2d8f2d39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.12
+      value: 5.55
       objectReference: {fileID: 0}
     - target: {fileID: 8235709954847283263, guid: 36de55b8595d94549807d6cb2d8f2d39, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.35
+      value: -2.52
       objectReference: {fileID: 0}
     - target: {fileID: 8235709954847283263, guid: 36de55b8595d94549807d6cb2d8f2d39, type: 3}
       propertyPath: m_LocalPosition.z

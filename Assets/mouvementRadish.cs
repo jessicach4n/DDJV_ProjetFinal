@@ -18,21 +18,6 @@ public class mouvementRadish : MonoBehaviour
     public int maxPies = 5;
     private bool piesAllCollected = false;
 
-    public int GetNumberMaxPies()
-    {
-        return maxPies;
-    }
-
-    public int GetNumberPies()
-    {
-        return nbPiesCollected;
-    }
-
-    public int GetNumberLives()
-    {
-        return nbLives;
-    }
-
     void Start()
     {
         mouvement.z = 0.0f;
