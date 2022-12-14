@@ -14,6 +14,8 @@ TagManager:
   - Wall
   - Player
   - Projectile
+  - EnemyProjectile
+  - Enemy
   - Pie
   - 
   - 
