@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class mouvementRadish : MonoBehaviour
 {
@@ -16,58 +17,54 @@ public class mouvementRadish : MonoBehaviour
     public int nbLives = 4;
     public int nbPiesCollected = 0;
     public int maxPies = 5;
-    private bool piesAllCollected = false;
     public GameObject startingPoint;
+    private bool canMove;
 
     void Start()
     {
         mouvement.z = 0.0f;
         rig = GetComponent<Rigidbody2D>();
+        canMove = gameObject.tag == "LastRadish" ? false : true;
     }
 
     void Update()
     {
-        mouvement.x = Input.GetAxisRaw("Horizontal");
-        mouvement.y = 0.0f;
-        //Debug.Log("this is get direction  " + GetDirection());
-        if (mouvement.sqrMagnitude > 0.001f)
+        if (canMove)
         {
-
-            dernierMouvement = mouvement;
-            anim.SetFloat("DernierHorizontal", GetDirection());
-        }
-
-        anim.SetFloat("Speed", mouvement.sqrMagnitude);
-        anim.SetFloat("Horizontal", mouvement.x);
-        anim.SetFloat("IdleDirection", GetDirection());
-
-        if (Input.GetKeyDown("z"))
-        {
-            if (canJump)
+            mouvement.x = Input.GetAxisRaw("Horizontal");
+            mouvement.y = 0.0f;
+            //Debug.Log("this is get direction  " + GetDirection());
+            if (mouvement.sqrMagnitude > 0.001f)
             {
-                rig.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
-                //Debug.Log("jump was pressed");
-                anim.SetBool("Jump", true);
-                canJump = false;
+
+                dernierMouvement = mouvement;
+                anim.SetFloat("DernierHorizontal", GetDirection());
+            }
+
+            anim.SetFloat("Speed", mouvement.sqrMagnitude);
+            anim.SetFloat("Horizontal", mouvement.x);
+            anim.SetFloat("IdleDirection", GetDirection());
+
+            if (Input.GetKeyDown("z"))
+            {
+                if (canJump)
+                {
+                    rig.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+                    //Debug.Log("jump was pressed");
+                    anim.SetBool("Jump", true);
+                    canJump = false;
+                }
+            }
+
+            if (Input.GetKeyDown("x"))
+            {
+                //? la place, je tourne l'objet directement ? l'instantiation... ?a fonctionne mais ?a n'explique pas pourquoi ?a plante notre ancienne m?thode. -MAL
+                float angle = GetDirection() == -1 ? 180.0f : 0.0f;
+                Quaternion initalRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                GameObject inst = Instantiate(projectile, transform.position, initalRotation);
             }
         }
-
-        if (Input.GetKeyDown("x"))
-        {
-            //Debug.Log("fire was pressed");
-            //? la place, je tourne l'objet directement ? l'instantiation... ?a fonctionne mais ?a n'explique pas pourquoi ?a plante notre ancienne m?thode. -MAL
-            float angle = GetDirection() == -1 ? 180.0f : 0.0f;
-            //Debug.Log(angle);
-            Quaternion initalRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            GameObject inst = Instantiate(projectile, transform.position, initalRotation);
-
-            //ShootProjectile script = projectile.GetComponent<ShootProjectile>();
-            //rig.AddForce(transform.right * speed * intDirection, ForceMode2D.Impulse );
-            //rig.AddForceAtPosition(transform.right * speed, Vector2.up * -100000, ForceMode2D.Impulse);
-            //script.Shoot(intDirection);
-            //script.direction = intDirection;
-            //inst.transform.Rotate(Vector3.forward, scriptPlayer.GetDirection() * 90);
-        }
+        
     }
 
     private void FixedUpdate()
@@ -130,11 +127,6 @@ public class mouvementRadish : MonoBehaviour
 
             nbPiesCollected++;
             Debug.Log(nbPiesCollected);
-
-            if (nbPiesCollected == maxPies)
-            {
-                piesAllCollected = true;
-            }
         }
     }
 
@@ -145,9 +137,14 @@ public class mouvementRadish : MonoBehaviour
 
     public void Reload()
     {
-        if (nbLives >= 0)
+        nbLives--;
+        if (nbLives >= 1)
         {
             gameObject.transform.position = startingPoint.transform.position;
+        }
+        else
+        {
+            SceneManager.LoadScene("GameLostScene");
         }
     }
 }
