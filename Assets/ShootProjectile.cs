@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class ShootProjectile : MonoBehaviour
 {
     public float m_Speed = 10f;
