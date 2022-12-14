@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4617171809191054986}
   - component: {fileID: 4617171809191054985}
   - component: {fileID: 4617171809191054980}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: PiePumpkin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
