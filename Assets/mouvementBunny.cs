@@ -14,14 +14,14 @@ public class mouvementBunny : MonoBehaviour
     public bool canJump = true;
     private bool canShoot = true;
     public float rateOfFireInSeconds = 1.0f;
-    public float rateOfJump = 0.1f;
-    private int jumpSideToggle = -1; 
+    public float rateOfJump = 3.0f;
     void Start()
     {
         mouvement.z = 0.0f;
         rig = GetComponent<Rigidbody2D>();
         anim.SetFloat("DernierHorizontal", 1);
         anim.SetFloat("IdleDirection", 1);
+
         if (gameObject.tag == "BunnyKiller")
         {
             StartCoroutine(CShoot());
@@ -55,14 +55,6 @@ public class mouvementBunny : MonoBehaviour
         anim.SetFloat("Speed", mouvement.sqrMagnitude);
         anim.SetFloat("Horizontal", mouvement.x);
 
-
-        //if (Input.GetKeyDown("x"))
-        //{
-        //    //? la place, je tourne l'objet directement ? l'instantiation... ?a fonctionne mais ?a n'explique pas pourquoi ?a plante notre ancienne m?thode. -MAL 
-        //    float angle = GetDirection() == -1 ? 180.0f : 0.0f;
-        //    Quaternion initalRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        //    GameObject inst = Instantiate(projectile, transform.position, initalRotation);
-        //}
     }
 
     private void FixedUpdate()
@@ -122,10 +114,11 @@ public class mouvementBunny : MonoBehaviour
     IEnumerator CSuicide()
     {
         mouvement.x = 1;
-        yield return new WaitForSeconds(rateOfJump);
+        yield return new WaitForSeconds(0.5f);
         rig.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
         anim.SetBool("Jump", true);
-        mouvement.x = 0;
         jumpforce = 0;
+        yield return new WaitForSeconds(1.5f);
+     
     }
 }
