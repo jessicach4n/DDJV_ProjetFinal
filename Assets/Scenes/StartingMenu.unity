@@ -867,10 +867,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RadishDude
       objectReference: {fileID: 0}
-    - target: {fileID: 8235709954847283260, guid: 36de55b8595d94549807d6cb2d8f2d39, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8235709954847283263, guid: 36de55b8595d94549807d6cb2d8f2d39, type: 3}
       propertyPath: m_RootOrder
       value: 2
