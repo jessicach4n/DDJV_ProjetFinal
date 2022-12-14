@@ -23,7 +23,7 @@ public class Laser : MonoBehaviour
 
         if (radish.nbPiesCollected == radish.maxPies)
         {
-            laser.EndPos = laser.StartPos;
+            Destroy(gameObject);
 
         }
         else if (hit.collider != null)
