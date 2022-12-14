@@ -9,6 +9,13 @@ public class teleportation : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        player.transform.position = exit.transform.position;
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            player.transform.position = exit.transform.position;
+        }
+        else
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }
