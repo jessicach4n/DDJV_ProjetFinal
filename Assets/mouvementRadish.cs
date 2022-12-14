@@ -17,6 +17,7 @@ public class mouvementRadish : MonoBehaviour
     public int nbPiesCollected = 0;
     public int maxPies = 5;
     private bool piesAllCollected = false;
+    public GameObject startingPoint;
 
     void Start()
     {
@@ -71,9 +72,7 @@ public class mouvementRadish : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //transform.position = transform.position + mouvement.normalized * Time.fixedDeltaTime * speed;
         rig.velocity = new Vector2(mouvement.normalized.x * speed, rig.velocity.y) ;
-        //rig.AddForce(mouvement.normalized * speed, ForceMode2D.Force);
     }
 
     public int GetDirection()
@@ -97,13 +96,29 @@ public class mouvementRadish : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
             Vector2 norme = collision.GetContact(0).normal;
-            float produitScalaire = Vector2.Dot (norme,Vector2.up);
-            if(produitScalaire > 0.9f)
+            float produitScalaire = Vector2.Dot(norme, Vector2.up);
+            if (produitScalaire > 0.9f)
             {
-            anim.SetBool("Jump", false);
+                anim.SetBool("Jump", false);
                 canJump = true;
             }
-            //Debug.Log("wall was hit");
+
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            gameObject.transform.position = startingPoint.transform.position;
+        }
+
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("EnemyProjectile"))
+        {
+            if(gameObject.tag == "LastRadish")
+             {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                gameObject.transform.position = startingPoint.transform.position;
+            }
         }
     }
 

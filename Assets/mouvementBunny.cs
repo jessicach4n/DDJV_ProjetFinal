@@ -22,20 +22,24 @@ public class mouvementBunny : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         anim.SetFloat("DernierHorizontal", 1);
         anim.SetFloat("IdleDirection", 1);
+        if (gameObject.tag == "BunnyKiller")
+        {
+            StartCoroutine(CShoot());
+        }
 
     }
 
     void Update()
     {
-        if (gameObject.tag == "BunnyLevels")
+        if (gameObject.tag == "BunnyLevels" )
         {
-            StartCoroutine(CPath1());
+            StartCoroutine(CShoot());
         }
-        else if (gameObject.tag == "BunnyMainMenu")
+        else if (gameObject.tag == "BunnyMainMenu" || gameObject.tag == "BunnyKiller")
         {
             StartCoroutine(CJump());
         }
-        else
+        else if (gameObject.tag == "BunnyEndScene")
         {
             StartCoroutine(CSuicide());
         }
@@ -103,7 +107,7 @@ public class mouvementBunny : MonoBehaviour
             canJump = !canJump;
         }
     }
-    IEnumerator CPath1()
+    IEnumerator CShoot()
     {
         if (canShoot)
         {
