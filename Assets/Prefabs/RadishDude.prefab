@@ -125,6 +125,12 @@ MonoBehaviour:
   projectile: {fileID: 4897596389066032658, guid: 2fbd34fae2e262740907c5333446d338, type: 3}
   jumpforce: 7
   canJump: 1
+  nbLives: 4
+  nbPiesCollected: 0
+  maxPies: 5
+  nbMaxPies: {fileID: 0}
+  nbLivesText: {fileID: 0}
+  nbPiesText: {fileID: 0}
 --- !u!50 &8235709954847283256
 Rigidbody2D:
   serializedVersion: 4
