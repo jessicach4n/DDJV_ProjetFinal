@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class mouvementRadish : MonoBehaviour
 {
@@ -12,17 +13,34 @@ public class mouvementRadish : MonoBehaviour
     private Rigidbody2D rig;
     public float jumpforce = 7.0f;
     public bool canJump = true;
+    public int nbLives = 4;
+    public int nbPiesCollected = 0;
+    public int maxPies = 5;
+    private bool piesAllCollected = false;
+
+    public TextMeshProUGUI nbMaxPies;
+    public TextMeshProUGUI nbLivesText;
+    public TextMeshProUGUI nbPiesText;
+
     void Start()
     {
         mouvement.z = 0.0f;
         rig = GetComponent<Rigidbody2D>();
+
+        nbLivesText.text = nbLives.ToString();
+        nbPiesText.text = nbPiesCollected.ToString();
+        nbMaxPies.text = "/" + maxPies.ToString();
+
     }
 
     void Update()
     {
+        nbLivesText.text = nbLives.ToString();
+        nbPiesText.text = nbPiesCollected.ToString();
+
         mouvement.x = Input.GetAxisRaw("Horizontal");
         mouvement.y = 0.0f;
-        Debug.Log("this is get direction  " + GetDirection());
+        //Debug.Log("this is get direction  " + GetDirection());
         if (mouvement.sqrMagnitude > 0.001f)
         {
 
@@ -49,10 +67,10 @@ public class mouvementRadish : MonoBehaviour
 
         if (Input.GetKeyDown("x"))
         {
-            Debug.Log("fire was pressed");
-            //À la place, je tourne l'objet directement à l'instantiation... ça fonctionne mais ça n'explique pas pourquoi ça plante notre ancienne méthode. -MAL
+            //Debug.Log("fire was pressed");
+            //? la place, je tourne l'objet directement ? l'instantiation... ?a fonctionne mais ?a n'explique pas pourquoi ?a plante notre ancienne m?thode. -MAL
             float angle = GetDirection() == -1 ? 180.0f : 0.0f;
-            Debug.Log(angle);
+            //Debug.Log(angle);
             Quaternion initalRotation = Quaternion.AngleAxis(angle, Vector3.forward);
             GameObject inst = Instantiate(projectile, transform.position, initalRotation);
 
@@ -100,6 +118,23 @@ public class mouvementRadish : MonoBehaviour
                 canJump = true;
             }
             //Debug.Log("wall was hit");
+        }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pie"))
+        {
+            Destroy(collision.gameObject);
+
+            nbPiesCollected++;
+            Debug.Log(nbPiesCollected);
+
+            if (nbPiesCollected == maxPies)
+            {
+                piesAllCollected = true;
+            }
         }
     }
 }
