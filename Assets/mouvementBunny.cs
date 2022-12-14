@@ -14,7 +14,7 @@ public class mouvementBunny : MonoBehaviour
     public bool canJump = true;
     private bool canShoot = true;
     public float rateOfFireInSeconds = 1.0f;
-    public float rateOfJump = 3.0f;
+    public float rateOfJump = 0.1f;
     private int jumpSideToggle = -1; 
     void Start()
     {
@@ -58,7 +58,7 @@ public class mouvementBunny : MonoBehaviour
 
         //if (Input.GetKeyDown("x"))
         //{
-        //    //À la place, je tourne l'objet directement à l'instantiation... ça fonctionne mais ça n'explique pas pourquoi ça plante notre ancienne méthode. -MAL 
+        //    //? la place, je tourne l'objet directement ? l'instantiation... ?a fonctionne mais ?a n'explique pas pourquoi ?a plante notre ancienne m?thode. -MAL 
         //    float angle = GetDirection() == -1 ? 180.0f : 0.0f;
         //    Quaternion initalRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //    GameObject inst = Instantiate(projectile, transform.position, initalRotation);
@@ -122,7 +122,7 @@ public class mouvementBunny : MonoBehaviour
     IEnumerator CSuicide()
     {
         mouvement.x = 1;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(rateOfJump);
         rig.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
         anim.SetBool("Jump", true);
         mouvement.x = 0;

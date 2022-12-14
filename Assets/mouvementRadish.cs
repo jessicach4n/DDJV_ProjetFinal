@@ -106,7 +106,7 @@ public class mouvementRadish : MonoBehaviour
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            gameObject.transform.position = startingPoint.transform.position;
+            Reload();
         }
 
         else if (collision.gameObject.layer == LayerMask.NameToLayer("EnemyProjectile"))
@@ -117,7 +117,7 @@ public class mouvementRadish : MonoBehaviour
             }
             else
             {
-                gameObject.transform.position = startingPoint.transform.position;
+                Reload();
             }
         }
     }
@@ -145,6 +145,9 @@ public class mouvementRadish : MonoBehaviour
 
     public void Reload()
     {
-        
+        if (nbLives >= 0)
+        {
+            gameObject.transform.position = startingPoint.transform.position;
+        }
     }
 }
