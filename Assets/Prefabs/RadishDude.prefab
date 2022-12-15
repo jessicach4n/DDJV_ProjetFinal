@@ -130,6 +130,9 @@ MonoBehaviour:
   maxPies: 5
   startingPoint: {fileID: 0}
   poof: {fileID: 100018, guid: a40b64bf23366dc42a892af2c6ff6140, type: 3}
+  wallCollider:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!50 &8235709954847283256
 Rigidbody2D:
   serializedVersion: 4

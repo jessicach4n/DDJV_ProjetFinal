@@ -21,9 +21,12 @@ public class mouvementRadish : MonoBehaviour
     public GameObject startingPoint;
     public GameObject poof;
     private bool canMove;
+    private CapsuleCollider2D myCollider;
+    public LayerMask wallCollider;
 
     void Start()
     {
+        myCollider = GetComponent<CapsuleCollider2D>();
         mouvement.z = 0.0f;
         rig = GetComponent<Rigidbody2D>();
         canMove = gameObject.tag == "LastRadish" ? false : true;
@@ -31,12 +34,12 @@ public class mouvementRadish : MonoBehaviour
 
     void StartPiesEvent()
     {
-        EventManager.TriggerEvent("MaxPies", null);
+        EventManager.TriggerEvent("MaxPies", gameObject.transform);
     }
 
     void StartBackgroundEvent()
     {
-        EventManager.TriggerEvent("RedBackground", null);
+        EventManager.TriggerEvent("RedBackground", gameObject.transform);
     }
 
     void Update()
@@ -49,7 +52,22 @@ public class mouvementRadish : MonoBehaviour
         {
             mouvement.x = Input.GetAxisRaw("Horizontal");
             mouvement.y = 0.0f;
-            if (mouvement.sqrMagnitude > 0.001f)
+            //Collider2D[] results; 
+            Collider2D[] results = Physics2D.OverlapBoxAll(gameObject.transform.position, myCollider.size, Vector2.Angle(Vector2.zero, transform.position), wallCollider);
+            foreach(var memeber in results)
+            {
+                if(memeber.gameObject.layer == LayerMask.NameToLayer("Wall"))
+                {
+                    //Debug.Log("hit floor");
+                    //mouvement.x = 0;
+                }
+            }
+                //if (wallhit != null)
+                //{
+                //    Debug.Log("wall was hit");
+                //    //mouvement.x = 0;
+                //}
+                if (mouvement.sqrMagnitude > 0.001f)
             {
                 dernierMouvement = mouvement;
                 anim.SetFloat("DernierHorizontal", GetDirection());
@@ -101,21 +119,34 @@ public class mouvementRadish : MonoBehaviour
 
         return direction;
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
-            Vector2 norme = collision.GetContact(0).normal;
-            float produitScalaire = Vector2.Dot(norme, Vector2.up);
-            if (produitScalaire > 0.9f)
+            Debug.Log(collision.contactCount);
+            for (int i = 0; i < collision.contactCount; i++)
             {
-                anim.SetBool("Jump", false);
-                canJump = true;
-                Instantiate(poof, transform.position, Quaternion.identity);
+                Debug.Log(collision.transform.position);
+                Vector2 norme = collision.GetContact(i).normal;
+                float produitScalaire = Vector2.Dot(norme, Vector2.up);
+                if (produitScalaire > 0.9f)
+                {
+                    anim.SetFloat("Speed", 0.0f);
+                    anim.SetFloat("Horizontal", 0.0f);
+                    break;
+                }
             }
-
         }
-        else if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+            Instantiate(poof, transform.position, Quaternion.identity);
+            anim.SetBool("Jump", false);
+            canJump = true;
+        }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             Reload();
         }
@@ -132,7 +163,7 @@ public class mouvementRadish : MonoBehaviour
             }
         }
     }
-
+   
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pie"))
@@ -140,7 +171,7 @@ public class mouvementRadish : MonoBehaviour
             Destroy(collision.gameObject);
 
             nbPiesCollected++;
-            maxPiesAchieved = nbPiesCollected == maxPies ? true : false;
+            maxPiesAchieved = nbPiesCollected == maxPies;
         }
     }
 
