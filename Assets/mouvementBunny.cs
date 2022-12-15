@@ -95,7 +95,7 @@ public class mouvementBunny : MonoBehaviour
     IEnumerator CDeath()
     {
         Instantiate(EFX, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         Destroy(this.gameObject);
     }
     IEnumerator CJump()

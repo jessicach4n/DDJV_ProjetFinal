@@ -17,6 +17,7 @@ public class mouvementRadish : MonoBehaviour
     public int nbLives = 4;
     public int nbPiesCollected = 0;
     public int maxPies = 5;
+    private bool maxPiesAchieved = false;
     public GameObject startingPoint;
     public GameObject poof;
     private bool canMove;
@@ -28,8 +29,17 @@ public class mouvementRadish : MonoBehaviour
         canMove = gameObject.tag == "LastRadish" ? false : true;
     }
 
+    void StartPiesEvent()
+    {
+        EventManager.TriggerEvent("MaxPies", null);
+    }
+
     void Update()
     {
+        if (maxPiesAchieved)
+        {
+            StartPiesEvent();
+        }
         if (canMove)
         {
             mouvement.x = Input.GetAxisRaw("Horizontal");
@@ -125,7 +135,7 @@ public class mouvementRadish : MonoBehaviour
             Destroy(collision.gameObject);
 
             nbPiesCollected++;
-            Debug.Log(nbPiesCollected);
+            maxPiesAchieved = nbPiesCollected == maxPies ? true : false;
         }
     }
 
