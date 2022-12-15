@@ -18,6 +18,7 @@ public class mouvementRadish : MonoBehaviour
     public int nbPiesCollected = 0;
     public int maxPies = 5;
     public GameObject startingPoint;
+    public GameObject poof;
     private bool canMove;
 
     void Start()
@@ -33,10 +34,8 @@ public class mouvementRadish : MonoBehaviour
         {
             mouvement.x = Input.GetAxisRaw("Horizontal");
             mouvement.y = 0.0f;
-            //Debug.Log("this is get direction  " + GetDirection());
             if (mouvement.sqrMagnitude > 0.001f)
             {
-
                 dernierMouvement = mouvement;
                 anim.SetFloat("DernierHorizontal", GetDirection());
             }
@@ -50,7 +49,6 @@ public class mouvementRadish : MonoBehaviour
                 if (canJump)
                 {
                     rig.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
-                    //Debug.Log("jump was pressed");
                     anim.SetBool("Jump", true);
                     canJump = false;
                 }
@@ -98,6 +96,7 @@ public class mouvementRadish : MonoBehaviour
             {
                 anim.SetBool("Jump", false);
                 canJump = true;
+                Instantiate(poof, transform.position, Quaternion.identity);
             }
 
         }

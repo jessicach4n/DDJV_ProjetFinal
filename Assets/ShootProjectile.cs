@@ -31,5 +31,10 @@ public class ShootProjectile : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 }
