@@ -129,7 +129,7 @@ MonoBehaviour:
   nbPiesCollected: 0
   maxPies: 5
   startingPoint: {fileID: 0}
-  poof: {fileID: 9157105887711914197, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
+  poof: {fileID: 100018, guid: a40b64bf23366dc42a892af2c6ff6140, type: 3}
 --- !u!50 &8235709954847283256
 Rigidbody2D:
   serializedVersion: 4

@@ -34,6 +34,11 @@ public class mouvementRadish : MonoBehaviour
         EventManager.TriggerEvent("MaxPies", null);
     }
 
+    void StartBackgroundEvent()
+    {
+        EventManager.TriggerEvent("RedBackground", null);
+    }
+
     void Update()
     {
         if (maxPiesAchieved)
@@ -149,6 +154,7 @@ public class mouvementRadish : MonoBehaviour
         nbLives--;
         if (nbLives >= 1)
         {
+            StartBackgroundEvent();
             gameObject.transform.position = startingPoint.transform.position;
         }
         else
