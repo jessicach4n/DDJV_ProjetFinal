@@ -15,6 +15,7 @@ public class mouvementBunny : MonoBehaviour
     private bool canShoot = true;
     public float rateOfFireInSeconds = 1.0f;
     public float rateOfJump = 3.0f;
+    public GameObject EFX;
     void Start()
     {
         mouvement.z = 0.0f;
@@ -80,12 +81,23 @@ public class mouvementBunny : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+            anim.SetBool("Jump", false);
+        }
         if (collision.gameObject.layer == LayerMask.NameToLayer("Projectile"))
         {
-            Destroy(this.gameObject);
+            StartCoroutine(CDeath());
         }
     }
 
+    IEnumerator CDeath()
+    {
+        Instantiate(EFX, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(this.gameObject);
+    }
     IEnumerator CJump()
     {
         if (canJump)
@@ -96,6 +108,7 @@ public class mouvementBunny : MonoBehaviour
             yield return new WaitForSeconds(rateOfJump);
             anim.SetFloat("DernierHorizontal", anim.GetFloat("DernierHorizontal") * -1);
             anim.SetFloat("IdleDirection", anim.GetFloat("IdleDirection") *-1);
+            
             canJump = !canJump;
         }
     }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5150142960241929603}
   - component: {fileID: 2875846283599614276}
   - component: {fileID: 4805525181100364945}
+  - component: {fileID: 4876706741352221064}
   m_Layer: 11
   m_Name: PiePumpkin 1
   m_TagString: Untagged
@@ -101,3 +102,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &4876706741352221064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890758414402806494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b1f6e73abf3db147a6aa7daf06a6b10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EFX: {fileID: 1652143759095011289, guid: e2c1ac940434a5242b54d72b66654687, type: 3}
