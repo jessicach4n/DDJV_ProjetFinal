@@ -19,7 +19,10 @@ public class Pie : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(tmp);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            Destroy(tmp);
+        }
     }
 
 }
