@@ -3,15 +3,15 @@
 
 ## Notes importantes
 
-- Notre jeu est un plateformer. 
-- Notre petit radis a quatre vies.
-- Nous avons deux scenes de fin. Une lorsque le joueur gagne et une autre lorsqu'il perd.
-- Afin de se rendre à la fin de chaque niveau, le joeur doit collecter les 5 tartes du niveau. 
-vies sont regeneres a chaque niveau 
-### Controles : 
-- se deplacer : [a et d] ou les fleches [<- ->]
-- lancer des projectilels : x
-- sauter : z
+- Le jeu est un plateformer. 
+- Le joueur prossède quatres vies. 
+- Il y a deux scenes de fin.
+- Pour passer au prochain niveau, le joueur doit récupérer cinq tartes afin de désactiver le laser.
+- La vie du joueur est regénérée à chaque niveau.
+### Contrôles : 
+- Pour se deplacer : [a] et [d] ou utiliser les flèches.
+- Pour lancer des projectilels : [x]
+- Pour sauter : [z]
 
 ### Bugs connus  :
-- si notre radis saute et s'il touche un mur et s'il continue de se diriger ver la direction du dit mur au moment de la collision, ce dernier defie la gravité et restera à sa position tant qu'il avance. 
+- Si le joueur saute et frappe un mur avec la touche enfoncée dans une direction au moment de la collision, le joueur restera à la même position tant qu'il avance en défiant la gravité.
